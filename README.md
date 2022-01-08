@@ -102,7 +102,7 @@ for i in tqdm(range(iters), miniters=iters/100):
 
 The question posed gives a (big) hint to using modular arithmetic to assess this problem. A sample of the results is therefore taken and visualised in mod 3.
 
-### Sample first 100 results in mod 3
+### Sample first 100 results in modulo 3
 
 
 ```python
@@ -128,6 +128,7 @@ from matplotlib.pyplot import figure
 %matplotlib inline
 
 figure(figsize=(25, 4), dpi=100)
+plt.rcParams.update({'font.size': 15})
 
 plt.plot(range(len(b)), b, 'b')
 plt.plot(range(len(r)), r, 'r')
@@ -146,7 +147,7 @@ plt.title('Total Quantity of Salamanders in mod 3')
 ![png](output_15_1.png)
 
 
-### Mod3 importance
+### Modulus importance
 
 
 ```python
@@ -349,7 +350,7 @@ pd.DataFrame(meet_d_mod, ['xy'], ['x', 'y', 'z'])
 
 Again, where salamander colours are different, there is no convergence between colours in mod3.
 
-This exhausts all meeting possibilities, and shows there is no possibility of convergence between quantities of each colour in mod3. With this being the case, it is impossible for all to reach 0 (mod3). This means that there can never be 30 Red salamanaders.
+This exhausts all meeting possibilities, and shows there is no possibility of convergence between quantities of each colour in mod3. With this being the case, it is impossible for all to reach 0 (mod3). This means that there can never be 30 Red salamanders.
 
 However, 29R is possible, with 0B and 1G. This maintains the count structure in mod3 as this would be 2R, 0B, 1G (mod3).
 
@@ -413,7 +414,8 @@ plt.title('Histogram of Total Quantity of Red Salamanders')
 ![png](output_34_1.png)
 
 
-We observe that the histogram shows a bell-like curve of distribution that tails off drastically above 20R. As may be expected, the modal number of Reds is 10, or 1/3 of the total population - a similar graph would be expected for Blues and Greens. If we were to assume that the number of Reds is approximately normally distributed, we could estimate the probability of getting the maximum number of Reds (29).
+We observe that the histogram shows a bell-like curve of distribution. As may be expected, the modal number of Reds is 10, or 1/3 of the total population. This reflects that with more Reds present in the population, there is a higher probability of a Red being selected and therefore the number of Reds being reduced. The opposite can be observed below this level, and a similar graph would be expected for Blues and Greens.  
+We can see that the graph tails off drastically above 20R - if we were to assume that the number of Reds is approximately normally distributed, we could estimate the probability of getting the maximum number of Reds (29).
 
 
 ```python
@@ -427,11 +429,11 @@ norm.pdf(29, loc=mean, scale=std)
 
 
 
-    5.4282397344669134e-12
+    4.750575739333807e-12
 
 
 
-This result suggests that, as a rough figure, even if we simulated 184 billion meetings, there would still be about a 37% chance (1/$e$) we would not reach the maximum of 29 Reds at any point!
+This result suggests that, as a rough figure, even if we simulated 210 billion meetings, there would still be about a 37% chance (1/$e$) we would not reach the maximum of 29 Reds at any point!
 
 NB: This is only if assuming a normal distribution, which the bounded data does not strictly fit.
 
@@ -483,4 +485,4 @@ plt.title('Total Quantity of Red Salamanders (Optimised Algorithm)')
 ![png](output_41_1.png)
 
 
-We can see that with the optimised algorithm, the maximum number of possible Reds, 29, was reached in under 500 iterations.
+We can see that with the optimised algorithm, the maximum number of possible Reds, 29, was reached in under 1000 iterations.
